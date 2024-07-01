@@ -109,6 +109,10 @@ const attention_question = `
             </div>
         </div>
         <br>
+        <br>
+        You are halfway through the scenarios!
+        <br>
+        <br>
     </div>
 `
 
