@@ -7,10 +7,10 @@ const consent_html = `
     <p style="text-align: left;">
         The purpose of this study is to understand how we weigh information what other people say. 
         This study will be conducted through this online survey. 
-        The survey should take you about <span style="font-weight: bold;">[TIME]</span> to complete. 
+        The survey should take you about <span style="font-weight: bold;">18 minutes</span> to complete. 
         There are no direct benefits to you, 
         but you may feel gratified knowing that you helped further the scholarly work in this research area, 
-        and you will be compensated <span style="font-weight: bold;">[MONEY]</span> for your participation. 
+        and you will be compensated <span style="font-weight: bold;">$3.60</span> for your participation. 
         There are no costs to you associated with your participation.
     </p>
     <p style="text-align: left;">

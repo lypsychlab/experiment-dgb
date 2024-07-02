@@ -218,7 +218,7 @@ var conditions = [
         "good_out": "the birthday boy not to be around smoke",
         "bad_out": "to smoke",
         "good_verb": "wait until after the party",
-        "bad_verb": "smoke now",
+        "bad_verb": "smoke immediately",
         "virtue": "reducing harm to others",
         "pronoun": "she",
         "pos_pronoun": "her"
