@@ -51,13 +51,13 @@ const consent_html = `
 
 const instructions_page1 = `
     <p style="text-align: left;">
-        In this survey, you will read a series of scenarios in which a person is faced with a moral dilemma. 
-        For each scenario, you will first read the setup for the dilemma, and then you will read about what the person did. 
-        Then, you will be asked a series of questions about the scenario itself and the person that you read about.
+        In this study, you will read about pairs of different characters who are in very similar scenarios. 
+        The initial description of the scenario will be the same for both characters in each pair.
+        However, the two characters will think through their respective scenarios differently, so please read the second and third paragraphs of each scenario carefully.
         <br>
         <br>
-        There are 16 scenarios. The first scenario will be presented as soon as you click the "Next" button below. 
-        Then, the scenarios will follow one another until you have seen all 16. After the scenarios, there will be a short demographics survey.
+        There are 8 scenarios. The first scenario will be presented when you click the "Next" button below. 
+        Then, the scenarios will follow one another until you have seen all 8. After the scenarios, there will be a short demographics survey.
     </p>
 `
 
@@ -65,48 +65,76 @@ const attention_question = `
     <div class="prevent-select" style="text-align: left;">
         Sometimes respondents to our surveys are bots rather than real people. 
         We need to remove those responses from our data to make sure our research findings are valid. 
-        To help us know who is actually a real person, please ignore the question wording below and select the option with the label '2.' 
+        To help us know who is actually a real person, please ignore the question wording below and select the option with the label '2 slightly likely.' 
         This is not intended to trick you and will not affect your payment. Thank you!
         <br>
         <br>
         How likely is it that the average person would be tempted to call out of work without being sick?
         <br>
         <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_0">1<br>not likely at all</label>
-                <br>
-                <input name="attention_check" type="radio" value="0" id="attention_check_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_1">2</label>
-                <br>
-                <input name="attention_check" type="radio" value="1" id="attention_check_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_2">3</label>
-                <br>
-                <input name="attention_check" type="radio" value="2" id="attention_check_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_3">4</label>
-                <br>
-                <input name="attention_check" type="radio" value="3" id="attention_check_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_4">5</label>
-                <br>
-                <input name="attention_check" type="radio" value="4" id="attention_check_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_5">6</label>
-                <br>
-                <input name="attention_check" type="radio" value="5" id="attention_check_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="attention_check_6">7<br>very likely</label>
-                <br>
-                <input name="attention_check" type="radio" value="6" id="attention_check_6" />
-            </div>
+            <label class="hlikert-label" for="average_0">
+                <div class="hlikert">
+                    1
+                    <br>
+                    not at all likely
+                    <br>
+                    <input name="average" type="radio" value="0" id="average_0" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_1">
+                <div class="hlikert">
+                    2
+                    <br>
+                    slightly likely
+                    <br>
+                    <input name="average" type="radio" value="1" id="average_1" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_2">
+                <div class="hlikert">
+                    3
+                    <br>
+                    somewhat likely
+                    <br>
+                    <input name="average" type="radio" value="2" id="average_2" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_3">
+                <div class="hlikert">
+                    4
+                    <br>
+                    moderately likely
+                    <br>
+                    <input name="average" type="radio" value="3" id="average_3" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_4">
+                <div class="hlikert">
+                    5
+                    <br>
+                    quite likely
+                    <br>
+                    <input name="average" type="radio" value="4" id="average_4" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_5">
+                <div class="hlikert">
+                    6
+                    <br>
+                    considerably likely
+                    <br>
+                    <input name="average" type="radio" value="5" id="average_5" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_6">
+                <div class="hlikert">
+                    7
+                    <br>
+                    very likely
+                    <br>
+                    <input name="average" type="radio" value="6" id="average_6" required />
+                </div>
+            </label>
         </div>
         <br>
         <br>
@@ -116,13 +144,39 @@ const attention_question = `
     </div>
 `
 
-function scenario_description(setup, outcome) {
+function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_tempt, outcome_notempt, conclusion_tempt, conclusion_notempt) {
+    let setups = (tempt_first) ? [setup_tempt, setup_notempt] : [setup_notempt, setup_tempt]
+    let outcomes = (tempt_first) ? [outcome_tempt, outcome_notempt] : [outcome_notempt, outcome_tempt]
+    let conclusions = (tempt_first) ? [conclusion_tempt, conclusion_notempt] : [conclusion_notempt, conclusion_tempt]
+
     let scenario_text = `
-        <div style="text-align: left;">
-            ${setup}
-            <br>
-            <br>
-            ${outcome}
+        <div class="scenarios-container">
+            <div class="scenario">
+                <div>
+                    ${setups[0]}
+                    <br>
+                    <br>
+                    ${outcomes[0]}
+                    <br>
+                    <br>
+                </div>
+                <div>
+                    ${conclusions[0]}
+                </div>
+            </div>
+            <div class="scenario">
+                <div>
+                    ${setups[1]}
+                    <br>
+                    <br>
+                    ${outcomes[1]}
+                    <br>
+                    <br>
+                </div>
+                <div>
+                    ${conclusions[1]}
+                </div>
+            </div>
         </div>
         <br>
         <hr>
@@ -131,492 +185,276 @@ function scenario_description(setup, outcome) {
     return scenario_text
 }
 
-function scenario_questions(name, good_out, bad_out, good_verb, bad_verb, virtue, pronoun, pos_pronoun) {
-    let q_moral = `
-        How moral was ${name} in this situation?
-        <br>
-        <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_0">1<br>very morally bad</label>
-                <br>
-                <input name="moral" type="radio" value="0" id="moral_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_1">2</label>
-                <br>
-                <input name="moral" type="radio" value="1" id="moral_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_2">3</label>
-                <br>
-                <input name="moral" type="radio" value="2" id="moral_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_3">4</label>
-                <br>
-                <input name="moral" type="radio" value="3" id="moral_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_4">5</label>
-                <br>
-                <input name="moral" type="radio" value="4" id="moral_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_5">6</label>
-                <br>
-                <input name="moral" type="radio" value="5" id="moral_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="moral_6">7<br>very morally good</label>
-                <br>
-                <input name="moral" type="radio" value="6" id="moral_6" />
-            </div>
-        </div>
-        <br>
-    `
+function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, good_behav, bad_behav) {
+    let names = (tempt_first) ? [name_tempt, name_notempt] : [name_notempt, name_tempt]
 
-    let q_stakes = `
-        How high were the stakes of the decision that ${name} had to make?
+    let q_relmoral = `
+        Which of the two individuals acted more morally in this situation?
         <br>
         <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_0">1<br>very low</label>
-                <br>
-                <input name="stakes" type="radio" value="0" id="stakes_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_1">2</label>
-                <br>
-                <input name="stakes" type="radio" value="1" id="stakes_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_2">3</label>
-                <br>
-                <input name="stakes" type="radio" value="2" id="stakes_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_3">4</label>
-                <br>
-                <input name="stakes" type="radio" value="3" id="stakes_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_4">5</label>
-                <br>
-                <input name="stakes" type="radio" value="4" id="stakes_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_5">6</label>
-                <br>
-                <input name="stakes" type="radio" value="5" id="stakes_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="stakes_6">7<br>very high</label>
-                <br>
-                <input name="stakes" type="radio" value="6" id="stakes_6" />
-            </div>
+            <label class="hlikert-label" for="relmoral_0">
+                <div class="hlikert">
+                    1
+                    <br>
+                    ${names[0]} was much more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="0" id="relmoral_0" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_1">
+                <div class="hlikert">
+                    2
+                    <br>
+                    ${names[0]} was more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="1" id="relmoral_1" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_2">
+                <div class="hlikert">
+                    3
+                    <br>
+                    ${names[0]} was a bit more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="2" id="relmoral_2" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_3">
+                <div class="hlikert">
+                    4
+                    <br>
+                    ${names[0]} and ${names[1]} were equally moral
+                    <br>
+                    <input name="relmoral" type="radio" value="3" id="relmoral_3" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_4">
+                <div class="hlikert">
+                    5
+                    <br>
+                    ${names[1]} was a bit more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="4" id="relmoral_4" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_5">
+                <div class="hlikert">
+                    6
+                    <br>
+                    ${names[1]} was more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="5" id="relmoral_5" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="relmoral_6">
+                <div class="hlikert">
+                    7
+                    <br>
+                    ${names[1]} was much more moral
+                    <br>
+                    <input name="relmoral" type="radio" value="6" id="relmoral_6" required />
+                </div>
+            </label>
         </div>
         <br>
     `
 
     let q_average = `
-        How likely is it that the average person would be tempted to ${bad_verb} in this situation?
+        How likely is it that the average ${(agent_age == "c") ? "child" : "adult"} would be tempted to ${bad_behav} in this situation?
         <br>
         <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_0">1<br>not likely at all</label>
-                <br>
-                <input name="average" type="radio" value="0" id="average_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_1">2</label>
-                <br>
-                <input name="average" type="radio" value="1" id="average_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_2">3</label>
-                <br>
-                <input name="average" type="radio" value="2" id="average_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_3">4</label>
-                <br>
-                <input name="average" type="radio" value="3" id="average_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_4">5</label>
-                <br>
-                <input name="average" type="radio" value="4" id="average_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_5">6</label>
-                <br>
-                <input name="average" type="radio" value="5" id="average_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="average_6">7<br>very likely</label>
-                <br>
-                <input name="average" type="radio" value="6" id="average_6" />
-            </div>
+            <label class="hlikert-label" for="average_0">
+                <div class="hlikert">
+                    1
+                    <br>
+                    not at all likely
+                    <br>
+                    <input name="average" type="radio" value="0" id="average_0" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_1">
+                <div class="hlikert">
+                    2
+                    <br>
+                    slightly likely
+                    <br>
+                    <input name="average" type="radio" value="1" id="average_1" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_2">
+                <div class="hlikert">
+                    3
+                    <br>
+                    somewhat likely
+                    <br>
+                    <input name="average" type="radio" value="2" id="average_2" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_3">
+                <div class="hlikert">
+                    4
+                    <br>
+                    moderately likely
+                    <br>
+                    <input name="average" type="radio" value="3" id="average_3" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_4">
+                <div class="hlikert">
+                    5
+                    <br>
+                    quite likely
+                    <br>
+                    <input name="average" type="radio" value="4" id="average_4" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_5">
+                <div class="hlikert">
+                    6
+                    <br>
+                    considerably likely
+                    <br>
+                    <input name="average" type="radio" value="5" id="average_5" required />
+                </div>
+            </label>
+            <label class="hlikert-label" for="average_6">
+                <div class="hlikert">
+                    7
+                    <br>
+                    very likely
+                    <br>
+                    <input name="average" type="radio" value="6" id="average_6" required />
+                </div>
+            </label>
         </div>
         <br>
     `
 
-    let q_ms_inferences_1 = `
+    let q_praise_tempt = `
         <div class="mtable-statement-container">
-            <div class="mtable-statement-text">feel tempted to ${bad_verb}?</div>
-            <label class="mtable-statement-point" for="tempt_bad_0">
-                <input name="tempt_bad" type="radio" value="0" id="tempt_bad_0" required />
+            <div class="mtable-statement-text">${name_tempt}</div>
+            <label class="mtable-statement-point" for="praise_tempt_0">
+                <input name="praise_tempt" type="radio" value="0" id="praise_tempt_0" required />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_1">
-                <input name="tempt_bad" type="radio" value="1" id="tempt_bad_1" />
+            <label class="mtable-statement-point" for="praise_tempt_1">
+                <input name="praise_tempt" type="radio" value="1" id="praise_tempt_1" />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_2">
-                <input name="tempt_bad" type="radio" value="2" id="tempt_bad_2" />
+            <label class="mtable-statement-point" for="praise_tempt_2">
+                <input name="praise_tempt" type="radio" value="2" id="praise_tempt_2" />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_3">
-                <input name="tempt_bad" type="radio" value="3" id="tempt_bad_3" />
+            <label class="mtable-statement-point" for="praise_tempt_3">
+                <input name="praise_tempt" type="radio" value="3" id="praise_tempt_3" />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_4">
-                <input name="tempt_bad" type="radio" value="4" id="tempt_bad_4" />
+            <label class="mtable-statement-point" for="praise_tempt_4">
+                <input name="praise_tempt" type="radio" value="4" id="praise_tempt_4" />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_5">
-                <input name="tempt_bad" type="radio" value="5" id="tempt_bad_5" />
+            <label class="mtable-statement-point" for="praise_tempt_5">
+                <input name="praise_tempt" type="radio" value="5" id="praise_tempt_5" />
             </label>
-            <label class="mtable-statement-point" for="tempt_bad_6">
-                <input name="tempt_bad" type="radio" value="6" id="tempt_bad_6" />
+            <label class="mtable-statement-point" for="praise_tempt_6">
+                <input name="praise_tempt" type="radio" value="6" id="praise_tempt_6" />
             </label>
         </div>
     `
 
-    let q_ms_inferences_2 = `
+    let q_praise_notempt = `
         <div class="mtable-statement-container">
-            <div class="mtable-statement-text">feel tempted to ${good_verb}?</div>
-            <label class="mtable-statement-point" for="tempt_good_0">
-                <input name="tempt_good" type="radio" value="0" id="tempt_good_0" required />
+            <div class="mtable-statement-text">${name_notempt}</div>
+            <label class="mtable-statement-point" for="praise_notempt_0">
+                <input name="praise_notempt" type="radio" value="0" id="praise_notempt_0" required />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_1">
-                <input name="tempt_good" type="radio" value="1" id="tempt_good_1" />
+            <label class="mtable-statement-point" for="praise_notempt_1">
+                <input name="praise_notempt" type="radio" value="1" id="praise_notempt_1" />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_2">
-                <input name="tempt_good" type="radio" value="2" id="tempt_good_2" />
+            <label class="mtable-statement-point" for="praise_notempt_2">
+                <input name="praise_notempt" type="radio" value="2" id="praise_notempt_2" />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_3">
-                <input name="tempt_good" type="radio" value="3" id="tempt_good_3" />
+            <label class="mtable-statement-point" for="praise_notempt_3">
+                <input name="praise_notempt" type="radio" value="3" id="praise_notempt_3" />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_4">
-                <input name="tempt_good" type="radio" value="4" id="tempt_good_4" />
+            <label class="mtable-statement-point" for="praise_notempt_4">
+                <input name="praise_notempt" type="radio" value="4" id="praise_notempt_4" />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_5">
-                <input name="tempt_good" type="radio" value="5" id="tempt_good_5" />
+            <label class="mtable-statement-point" for="praise_notempt_5">
+                <input name="praise_notempt" type="radio" value="5" id="praise_notempt_5" />
             </label>
-            <label class="mtable-statement-point" for="tempt_good_6">
-                <input name="tempt_good" type="radio" value="6" id="tempt_good_6" />
+            <label class="mtable-statement-point" for="praise_notempt_6">
+                <input name="praise_notempt" type="radio" value="6" id="praise_notempt_6" />
             </label>
         </div>
     `
 
-    let q_ms_inferences_3 = `
-        <div class="mtable-statement-container">
-            <div class="mtable-statement-text">want ${bad_out}?</div>
-            <label class="mtable-statement-point" for="want_bad_0">
-                <input name="want_bad" type="radio" value="0" id="want_bad_0" required />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_1">
-                <input name="want_bad" type="radio" value="1" id="want_bad_1" />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_2">
-                <input name="want_bad" type="radio" value="2" id="want_bad_2" />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_3">
-                <input name="want_bad" type="radio" value="3" id="want_bad_3" />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_4">
-                <input name="want_bad" type="radio" value="4" id="want_bad_4" />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_5">
-                <input name="want_bad" type="radio" value="5" id="want_bad_5" />
-            </label>
-            <label class="mtable-statement-point" for="want_bad_6">
-                <input name="want_bad" type="radio" value="6" id="want_bad_6" />
-            </label>
-        </div>
-    `
+    let praise_array = (tempt_first) ? [q_praise_tempt, q_praise_notempt] : [q_praise_notempt, q_praise_tempt]
 
-    let q_ms_inferences_4 = `
-        <div class="mtable-statement-container">
-            <div class="mtable-statement-text">want ${good_out}?</div>
-            <label class="mtable-statement-point" for="want_good_0">
-                <input name="want_good" type="radio" value="0" id="want_good_0" required />
-            </label>
-            <label class="mtable-statement-point" for="want_good_1">
-                <input name="want_good" type="radio" value="1" id="want_good_1" />
-            </label>
-            <label class="mtable-statement-point" for="want_good_2">
-                <input name="want_good" type="radio" value="2" id="want_good_2" />
-            </label>
-            <label class="mtable-statement-point" for="want_good_3">
-                <input name="want_good" type="radio" value="3" id="want_good_3" />
-            </label>
-            <label class="mtable-statement-point" for="want_good_4">
-                <input name="want_good" type="radio" value="4" id="want_good_4" />
-            </label>
-            <label class="mtable-statement-point" for="want_good_5">
-                <input name="want_good" type="radio" value="5" id="want_good_5" />
-            </label>
-            <label class="mtable-statement-point" for="want_good_6">
-                <input name="want_good" type="radio" value="6" id="want_good_6" />
-            </label>
-        </div>
-    `
-
-    let ms_inferences_array = [q_ms_inferences_1, q_ms_inferences_2, q_ms_inferences_3, q_ms_inferences_4]
-
-    shuffleArray(ms_inferences_array)
-
-    let q_ms_inferences = `
-        How much did ${name}. . . 
+    let q_praise = `
+        How much moral praise does each individual deserve for ${good_behav} in this situation?
         <br>
         <div class="mtable-container">
             <div class="mtable-scale-container">
                 <div class="mtable-scale-spacer"></div>
-                <div class="mtable-scale-point">1<br>not at all</div>
-                <div class="mtable-scale-point">2</div>
-                <div class="mtable-scale-point">3</div>
-                <div class="mtable-scale-point">4</div>
-                <div class="mtable-scale-point">5</div>
-                <div class="mtable-scale-point">6</div>
+                <div class="mtable-scale-point">1<br>none at all</div>
+                <div class="mtable-scale-point">2<br>very little</div>
+                <div class="mtable-scale-point">3<br>some</div>
+                <div class="mtable-scale-point">4<br>moderate</div>
+                <div class="mtable-scale-point">5<br>quite a bit</div>
+                <div class="mtable-scale-point">6<br>considerable</div>
                 <div class="mtable-scale-point">7<br>very much</div>
             </div>
-            ${ms_inferences_array[0]}
-            ${ms_inferences_array[1]}
-            ${ms_inferences_array[2]}
-            ${ms_inferences_array[3]}
+            ${praise_array[0]}
+            ${praise_array[1]}
         </div>
         <br>
     `
 
-    let q_value = `
-        How much does ${name} value ${virtue}?
+    let a_tempt = `
+        <label for="whotempt_tempt">
+            <div class="vmulti">
+                <input name="whotempt" type="radio" value="tempt" id="whotempt_tempt" required />
+                ${name_tempt}
+            </div>
+        </label>
+    `
+
+    let a_notempt = `
+        <label for="whotempt_notempt">
+            <div class="vmulti">
+                <input name="whotempt" type="radio" value="notempt" id="whotempt_notempt" required />
+                ${name_notempt}
+            </div>
+        </label>
+    `
+
+    let a_whotempt_array = (tempt_first) ? [a_tempt, a_notempt] : [a_notempt, a_tempt]
+
+    let q_whotempt = `
+        Who was tempted to ${bad_behav}?
         <br>
-        <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_0">1<br>not at all</label>
-                <br>
-                <input name="value" type="radio" value="0" id="value_0" required />
+        ${a_whotempt_array[0]}
+        ${a_whotempt_array[1]}
+        <label for="whotempt_neither">
+            <div class="vmulti">
+                <input name="whotempt" type="radio" value="neither" id="whotempt_neither" required />
+                Neither
             </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_1">2</label>
-                <br>
-                <input name="value" type="radio" value="1" id="value_1" />
+        </label>
+        <label for="whotempt_both">
+            <div class="vmulti">
+                <input name="whotempt" type="radio" value="both" id="whotempt_both" required />
+                Both
             </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_2">3</label>
-                <br>
-                <input name="value" type="radio" value="2" id="value_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_3">4</label>
-                <br>
-                <input name="value" type="radio" value="3" id="value_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_4">5</label>
-                <br>
-                <input name="value" type="radio" value="4" id="value_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_5">6</label>
-                <br>
-                <input name="value" type="radio" value="5" id="value_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="value_6">7<br>very much</label>
-                <br>
-                <input name="value" type="radio" value="6" id="value_6" />
-            </div>
-        </div>
+        </label>
         <br>
     `
 
-    let q_control_1 = `
-        <div class="mtable-statement-container">
-            <div class="mtable-statement-text">the thoughts ${pronoun} had in the situation?</div>
-            <label class="mtable-statement-point" for="control_thoughts_0">
-                <input name="control_thoughts" type="radio" value="0" id="control_thoughts_0" required />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_1">
-                <input name="control_thoughts" type="radio" value="1" id="control_thoughts_1" />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_2">
-                <input name="control_thoughts" type="radio" value="2" id="control_thoughts_2" />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_3">
-                <input name="control_thoughts" type="radio" value="3" id="control_thoughts_3" />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_4">
-                <input name="control_thoughts" type="radio" value="4" id="control_thoughts_4" />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_5">
-                <input name="control_thoughts" type="radio" value="5" id="control_thoughts_5" />
-            </label>
-            <label class="mtable-statement-point" for="control_thoughts_6">
-                <input name="control_thoughts" type="radio" value="6" id="control_thoughts_6" />
-            </label>
-        </div>
-    `
-
-    let q_control_2 = `
-        <div class="mtable-statement-container">
-            <div class="mtable-statement-text">the way ${pronoun} acted in the situation?</div>
-            <label class="mtable-statement-point" for="control_actions_0">
-                <input name="control_actions" type="radio" value="0" id="control_actions_0" required />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_1">
-                <input name="control_actions" type="radio" value="1" id="control_actions_1" />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_2">
-                <input name="control_actions" type="radio" value="2" id="control_actions_2" />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_3">
-                <input name="control_actions" type="radio" value="3" id="control_actions_3" />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_4">
-                <input name="control_actions" type="radio" value="4" id="control_actions_4" />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_5">
-                <input name="control_actions" type="radio" value="5" id="control_actions_5" />
-            </label>
-            <label class="mtable-statement-point" for="control_actions_6">
-                <input name="control_actions" type="radio" value="6" id="control_actions_6" />
-            </label>
-        </div>
-    `
-
-    let control_array = [q_control_1, q_control_2]
-
-    shuffleArray(control_array)
-
-    let q_control = `
-        How much control did ${name} have over. . . 
-        <br>
-        <div class="mtable-container">
-            <div class="mtable-scale-container">
-                <div class="mtable-scale-spacer"></div>
-                <div class="mtable-scale-point">1<br>no control</div>
-                <div class="mtable-scale-point">2</div>
-                <div class="mtable-scale-point">3</div>
-                <div class="mtable-scale-point">4</div>
-                <div class="mtable-scale-point">5</div>
-                <div class="mtable-scale-point">6</div>
-                <div class="mtable-scale-point">7<br>complete control</div>
-            </div>
-            ${control_array[0]}
-            ${control_array[1]}
-        </div>
-        <br>
-    `
-
-    let q_future = `
-        If this were to happen again, how likely is it that ${name} would act the same way?
-        <br>
-        <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_0">1<br>not likely at all</label>
-                <br>
-                <input name="future" type="radio" value="0" id="future_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_1">2</label>
-                <br>
-                <input name="future" type="radio" value="1" id="future_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_2">3</label>
-                <br>
-                <input name="future" type="radio" value="2" id="future_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_3">4</label>
-                <br>
-                <input name="future" type="radio" value="3" id="future_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_4">5</label>
-                <br>
-                <input name="future" type="radio" value="4" id="future_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_5">6</label>
-                <br>
-                <input name="future" type="radio" value="5" id="future_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="future_6">7<br>very likely</label>
-                <br>
-                <input name="future" type="radio" value="6" id="future_6" />
-            </div>
-        </div>
-        <br>
-    `
-
-    let q_time = `
-        How long do you think ${name} took to make ${pos_pronoun} decision?
-        <br>
-        <div class="hlikert-container">
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_0">1<br>not long at all</label>
-                <br>
-                <input name="time" type="radio" value="0" id="time_0" required />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_1">2</label>
-                <br>
-                <input name="time" type="radio" value="1" id="time_1" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_2">3</label>
-                <br>
-                <input name="time" type="radio" value="2" id="time_2" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_3">4</label>
-                <br>
-                <input name="time" type="radio" value="3" id="time_3" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_4">5</label>
-                <br>
-                <input name="time" type="radio" value="4" id="time_4" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_5">6</label>
-                <br>
-                <input name="time" type="radio" value="5" id="time_5" />
-            </div>
-            <div class="hlikert">
-                <label class="hlikert-label" for="time_6">7<br>a very long time</label>
-                <br>
-                <input name="time" type="radio" value="6" id="time_6" />
-            </div>
-        </div>
-        <br>
-    `
-
-    let questions_array = [q_moral, q_stakes, q_average, q_ms_inferences, q_value, q_control, q_future, q_time]
-
-    shuffleArray(questions_array)
+    let questions_array = [q_relmoral, q_average, q_praise, q_whotempt]
 
     let all_questions = `
         <div class="prevent-select" style="text-align: left;">
             <br>
-            ${questions_array[0]}
-            ${questions_array[1]}
-            ${questions_array[2]}
-            ${questions_array[3]}
-            ${questions_array[4]}
-            ${questions_array[5]}
-            ${questions_array[6]}
-            ${questions_array[7]}
+            ${questions_array[question_order[0]]}
+            ${questions_array[question_order[1]]}
+            ${questions_array[question_order[2]]}
+            ${questions_array[question_order[3]]}
         </div>
     `
 

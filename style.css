@@ -3,24 +3,58 @@
     width: 900px;
 }
 
+.scenarios-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+}
+
+.scenario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
 .prevent-select {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
 
+.vmulti {
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    transition: background-color 300ms;
+    border-radius: 10px;
+}
+
+.vmulti:hover {
+    background-color: whitesmoke;
+}
+
 .hlikert-container {
+    display: flex;
     font-size: 0;
-    text-align: center;
+    justify-content: center;
 }
 
 .hlikert {
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
     vertical-align: top;
-    width: 124px;
+    text-align: center;
+    width: 114px;
+    flex: 1 1 auto;
     margin-left: 2px;
     margin-right: 2px;
+    padding: 10px 5px;
     font-size: 18px;
     transition: background-color 300ms;
     background-color: snow;
@@ -32,14 +66,7 @@
 }
 
 .hlikert-label {
-    /* background-color: whitesmoke; */
-    display: inline-flex;
-    width: calc(100% - 10px);
-    min-height: 100px;
-    justify-content: center;
-    align-items: center;
-    /* border-radius: 10px; */
-    padding: 5px;
+    display: flex;
 }
 
 .mtable-container {
@@ -54,13 +81,13 @@
 
 .mtable-scale-spacer {
     display: inline-block;
-    width: 200px;
+    width: 100px;
     height: 10px;
 }
 
 .mtable-scale-point {
     display: inline-flex;
-    width: 90px;
+    width: 104px;
     height: 100%;
     margin-left: 2px;
     margin-right: 2px;
@@ -83,16 +110,17 @@
 
 .mtable-statement-text {
     display: inline-flex;
-    width: 200px;
+    width: 100px;
     min-height: 50px;
     vertical-align: top;
     align-items: center;
+    justify-content: right;
     font-size: 15px;
 }
 
 .mtable-statement-point {
     display: inline-flex;
-    width: 96px;
+    width: 110px;
     min-height: 50px;
     margin-left: 2px;
     margin-right: 2px;
