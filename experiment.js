@@ -70,7 +70,7 @@ const prolific_id = {
         document.getElementById("jspsych-content").style.margin = "50px auto"
 
         if (data.response) {
-            data.prolific_id = data.response["prolific_id"]
+            data.prolific_id_man = data.response["prolific_id"]
         }
     }
 }
