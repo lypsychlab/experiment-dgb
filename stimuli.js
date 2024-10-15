@@ -7,10 +7,10 @@ const consent_html = `
     <p style="text-align: left;">
         The purpose of this study is to understand how we weigh information what other people say. 
         This study will be conducted through this online survey. 
-        The survey should take you about <span style="font-weight: bold;">18 minutes</span> to complete. 
+        The survey should take you about <span style="font-weight: bold;">10 minutes</span> to complete. 
         There are no direct benefits to you, 
         but you may feel gratified knowing that you helped further the scholarly work in this research area, 
-        and you will be compensated <span style="font-weight: bold;">$3.60</span> for your participation. 
+        and you will be compensated <span style="font-weight: bold;">$2.00</span> for your participation. 
         There are no costs to you associated with your participation.
     </p>
     <p style="text-align: left;">
@@ -198,7 +198,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[0]} was much more moral
                     <br>
-                    <input name="relmoral" type="radio" value="0" id="relmoral_0" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 6 : 0}" id="relmoral_0" required />
                 </div>
             </label>
             <label class="hlikert-label" for="relmoral_1">
@@ -207,7 +207,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[0]} was more moral
                     <br>
-                    <input name="relmoral" type="radio" value="1" id="relmoral_1" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 5 : 1}" id="relmoral_1" required />
                 </div>
             </label>
             <label class="hlikert-label" for="relmoral_2">
@@ -216,7 +216,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[0]} was a bit more moral
                     <br>
-                    <input name="relmoral" type="radio" value="2" id="relmoral_2" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 4 : 2}" id="relmoral_2" required />
                 </div>
             </label>
             <label class="hlikert-label" for="relmoral_3">
@@ -234,7 +234,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[1]} was a bit more moral
                     <br>
-                    <input name="relmoral" type="radio" value="4" id="relmoral_4" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 2 : 4}" id="relmoral_4" required />
                 </div>
             </label>
             <label class="hlikert-label" for="relmoral_5">
@@ -243,7 +243,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[1]} was more moral
                     <br>
-                    <input name="relmoral" type="radio" value="5" id="relmoral_5" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 1 : 5}" id="relmoral_5" required />
                 </div>
             </label>
             <label class="hlikert-label" for="relmoral_6">
@@ -252,7 +252,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     <br>
                     ${names[1]} was much more moral
                     <br>
-                    <input name="relmoral" type="radio" value="6" id="relmoral_6" required />
+                    <input name="relmoral" type="radio" value="${(tempt_first) ? 0 : 6}" id="relmoral_6" required />
                 </div>
             </label>
         </div>
