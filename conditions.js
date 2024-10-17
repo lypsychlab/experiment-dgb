@@ -17,7 +17,8 @@ var conditions = [
         "good_behav_a": "cleaning up her yoga equipment",
         "bad_behav_a": "talk with their friends",
         "good_behav_c": "cleaning up her toys",
-        "bad_behav_c": "play with their friends"
+        "bad_behav_c": "play with their friends",
+        "scenario": 1
     },
     {
         "name_tempt": "Adam",
@@ -37,7 +38,8 @@ var conditions = [
         "good_behav_a": "not throwing the toy for the dog",
         "bad_behav_a": "throw the toy for the dog",
         "good_behav_c": "not throwing the toy for the dog",
-        "bad_behav_c": "throw the toy for the dog"
+        "bad_behav_c": "throw the toy for the dog",
+        "scenario": 2
     },
     {
         "name_tempt": "Grace",
@@ -57,7 +59,8 @@ var conditions = [
         "good_behav_a": "giving the coworker her cookie",
         "bad_behav_a": "keep their cookie for themselves",
         "good_behav_c": "giving the classmate her cookie",
-        "bad_behav_c": "keep their cookie for themselves"
+        "bad_behav_c": "keep their cookie for themselves",
+        "scenario": 3
     },
     {
         "name_tempt": "Mason",
@@ -77,7 +80,8 @@ var conditions = [
         "good_behav_a": "working on his application",
         "bad_behav_a": "watch football",
         "good_behav_c": "working on his homework",
-        "bad_behav_c": "watch football"
+        "bad_behav_c": "watch football",
+        "scenario": 4
     },
     {
         "name_tempt": "Rose",
@@ -97,7 +101,8 @@ var conditions = [
         "good_behav_a": "not taking three slices of pizza",
         "bad_behav_a": "take three slices of pizza",
         "good_behav_c": "not taking three slices of pizza",
-        "bad_behav_c": "take three slices of pizza"
+        "bad_behav_c": "take three slices of pizza",
+        "scenario": 5
     },
     {
         "name_tempt": "Liam",
@@ -117,7 +122,8 @@ var conditions = [
         "good_behav_a": "not eating the candy",
         "bad_behav_a": "eat the candy",
         "good_behav_c": "not eating the candy",
-        "bad_behav_c": "eat the candy"
+        "bad_behav_c": "eat the candy",
+        "scenario": 6
     },
     {
         "name_tempt": "Piper",
@@ -137,7 +143,8 @@ var conditions = [
         "good_behav_a": "not asking to work with the guy",
         "bad_behav_a": "ask to work with the guy",
         "good_behav_c": "not asking to work with the boy",
-        "bad_behav_c": "ask to work with the boy"
+        "bad_behav_c": "ask to work with the boy",
+        "scenario": 7
     },
     {
         "name_tempt": "James",
@@ -157,7 +164,8 @@ var conditions = [
         "good_behav_a": "going to bed",
         "bad_behav_a": "text with their friends",
         "good_behav_c": "going to bed",
-        "bad_behav_c": "text with their friends"
+        "bad_behav_c": "text with their friends",
+        "scenario": 8
     }
 ]
 

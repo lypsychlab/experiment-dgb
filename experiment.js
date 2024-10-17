@@ -139,7 +139,9 @@ const scenario = {
         )
     },
     data: {
-        type_of_trial: "scenario"
+        type_of_trial: "scenario",
+        agent_age: jsPsych.timelineVariable("agent_age"),
+        scenario: jsPsych.timelineVariable("scenario")
     },
     on_finish: function(data) {
         data.relmoral = data.response.relmoral
