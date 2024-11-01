@@ -72,67 +72,67 @@ const attention_question = `
         How likely is it that the average person would be tempted to call out of work without being sick?
         <br>
         <div class="hlikert-container">
-            <label class="hlikert-label" for="average_0">
+            <label class="hlikert-label" for="attention_0">
                 <div class="hlikert">
                     1
                     <br>
                     not at all likely
                     <br>
-                    <input name="average" type="radio" value="0" id="average_0" required />
+                    <input name="attention" type="radio" value="0" id="attention_0" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_1">
+            <label class="hlikert-label" for="attention_1">
                 <div class="hlikert">
                     2
                     <br>
                     slightly likely
                     <br>
-                    <input name="average" type="radio" value="1" id="average_1" required />
+                    <input name="attention" type="radio" value="1" id="attention_1" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_2">
+            <label class="hlikert-label" for="attention_2">
                 <div class="hlikert">
                     3
                     <br>
                     somewhat likely
                     <br>
-                    <input name="average" type="radio" value="2" id="average_2" required />
+                    <input name="attention" type="radio" value="2" id="attention_2" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_3">
+            <label class="hlikert-label" for="attention_3">
                 <div class="hlikert">
                     4
                     <br>
                     moderately likely
                     <br>
-                    <input name="average" type="radio" value="3" id="average_3" required />
+                    <input name="attention" type="radio" value="3" id="attention_3" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_4">
+            <label class="hlikert-label" for="attention_4">
                 <div class="hlikert">
                     5
                     <br>
                     quite likely
                     <br>
-                    <input name="average" type="radio" value="4" id="average_4" required />
+                    <input name="attention" type="radio" value="4" id="attention_4" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_5">
+            <label class="hlikert-label" for="attention_5">
                 <div class="hlikert">
                     6
                     <br>
                     considerably likely
                     <br>
-                    <input name="average" type="radio" value="5" id="average_5" required />
+                    <input name="attention" type="radio" value="5" id="attention_5" required />
                 </div>
             </label>
-            <label class="hlikert-label" for="average_6">
+            <label class="hlikert-label" for="attention_6">
                 <div class="hlikert">
                     7
                     <br>
                     very likely
                     <br>
-                    <input name="average" type="radio" value="6" id="average_6" required />
+                    <input name="attention" type="radio" value="6" id="attention_6" required />
                 </div>
             </label>
         </div>
@@ -144,9 +144,10 @@ const attention_question = `
     </div>
 `
 
-function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_tempt, outcome_notempt, conclusion_tempt, conclusion_notempt) {
+function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_tempt, outcome_notempt, dislike, like_text, dislike_text, conclusion_tempt, conclusion_notempt) {
     let setups = (tempt_first) ? [setup_tempt, setup_notempt] : [setup_notempt, setup_tempt]
     let outcomes = (tempt_first) ? [outcome_tempt, outcome_notempt] : [outcome_notempt, outcome_tempt]
+    let dislikes = (dislike == "d") ? ((tempt_first) ? [like_text, dislike_text] : [dislike_text, like_text]) : ["", ""]
     let conclusions = (tempt_first) ? [conclusion_tempt, conclusion_notempt] : [conclusion_notempt, conclusion_tempt]
 
     let scenario_text = `
@@ -156,6 +157,7 @@ function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_t
                     ${setups[0]}
                     <br>
                     <br>
+                    ${dislikes[0]}
                     ${outcomes[0]}
                     <br>
                     <br>
@@ -169,6 +171,7 @@ function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_t
                     ${setups[1]}
                     <br>
                     <br>
+                    ${dislikes[1]}
                     ${outcomes[1]}
                     <br>
                     <br>

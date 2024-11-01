@@ -28,7 +28,7 @@ const consent = {
     stimulus: consent_html,
     choices: ["Consent NOT given", "Consent given"],
     button_html: [
-        `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=CCUAB0P0', '_blank')">%choice%</button>`,
+        `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=CVJGHKLM', '_blank')">%choice%</button>`,
         `<button class="jspsych-btn">%choice%</button>`
     ],
     on_finish: function(data) {
@@ -37,7 +37,7 @@ const consent = {
             document.getElementById("jspsych-content").style.margin = "auto"
 
             jsPsych.endExperiment(
-                "You chose not to consent to participate.<br>If you were not automatically directed back to Prolific, please go back and enter the completion code CCUAB0P0"
+                "You chose not to consent to participate.<br>If you were not automatically directed back to Prolific, please go back and enter the completion code https://app.prolific.com/submissions/complete?cc=CVJGHKLM"
             )
         }
     },
@@ -106,7 +106,7 @@ const attention = {
     },
     on_finish: function(data) {
         if (data.response) {
-            data.response = data.response.attention_check
+            data.response = data.response.attention
         }
     },
     data: {
@@ -124,6 +124,9 @@ const scenario = {
             jsPsych.timelineVariable("setup_notempt_" + jsPsych.timelineVariable("agent_age")),
             jsPsych.timelineVariable("outcome_tempt_" + jsPsych.timelineVariable("agent_age")),
             jsPsych.timelineVariable("outcome_notempt_" + jsPsych.timelineVariable("agent_age")),
+            jsPsych.timelineVariable("dislike"),
+            jsPsych.timelineVariable("like_" + jsPsych.timelineVariable("agent_age")),
+            jsPsych.timelineVariable("dislike_" + jsPsych.timelineVariable("agent_age")),
             jsPsych.timelineVariable("conclusion_tempt_" + jsPsych.timelineVariable("agent_age")),
             jsPsych.timelineVariable("conclusion_notempt_" + jsPsych.timelineVariable("agent_age"))
         )
@@ -141,7 +144,8 @@ const scenario = {
     data: {
         type_of_trial: "scenario",
         agent_age: jsPsych.timelineVariable("agent_age"),
-        scenario: jsPsych.timelineVariable("scenario")
+        scenario: jsPsych.timelineVariable("scenario"),
+        dislike_phrasing: jsPsych.timelineVariable("dislike")
     },
     on_finish: function(data) {
         data.relmoral = data.response.relmoral
@@ -202,12 +206,12 @@ const debrief_to_prolific = {
     type: jsPsychHtmlButtonResponse,
     stimulus: debrief_html,
     choices: ["Back to Prolific"],
-    button_html: `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=CPOXLV44', '_blank')">%choice%</button>`,
+    button_html: `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=C16X8UEW', '_blank')">%choice%</button>`,
     on_finish: function() {
         document.getElementById("jspsych-content").style.margin = "auto"
 
         jsPsych.endExperiment(
-            "Thank you for your participation!.<br>Your completion code is CPOXLV44"
+            "Thank you for your participation!.<br>Your completion code is C16X8UEW"
         )
     },
     data: {
@@ -219,7 +223,7 @@ const debrief_to_prolific = {
 const save_data_all_trials = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "MJiO7LDmEOXJ",
+    experiment_id: "zXV8L4Df65hK",
     filename: `${subject_id}_all_trials.csv`,
     data_string: () => jsPsych.data.get().csv(),
     data: {
@@ -230,7 +234,7 @@ const save_data_all_trials = {
 const save_data_final = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "MJiO7LDmEOXJ",
+    experiment_id: "zXV8L4Df65hK",
     filename: `${subject_id}_final.csv`,
     data_string: () => jsPsych.data.get().csv(),
     data: {
