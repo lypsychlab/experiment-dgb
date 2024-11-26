@@ -61,6 +61,130 @@ const instructions_page1 = `
     </p>
 `
 
+const mgm_q1 = `
+    <div class="mtable-6-statement-container">
+        <div class="mtable-6-statement-text">No matter who you are, you can significantly improve your morals and character.</div>
+        <label class="mtable-6-statement-point" for="mgm_q1_0">
+            <input name="mgm_q1" type="radio" value="0" id="mgm_q1_0" required />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q1_1">
+            <input name="mgm_q1" type="radio" value="1" id="mgm_q1_1" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q1_2">
+            <input name="mgm_q1" type="radio" value="2" id="mgm_q1_2" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q1_3">
+            <input name="mgm_q1" type="radio" value="3" id="mgm_q1_3" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q1_4">
+            <input name="mgm_q1" type="radio" value="4" id="mgm_q1_4" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q1_5">
+            <input name="mgm_q1" type="radio" value="5" id="mgm_q1_5" />
+        </label>
+    </div>
+`
+
+const mgm_q2 = `
+    <div class="mtable-6-statement-container">
+        <div class="mtable-6-statement-text">To be honest, you can't really improve you morals and character.</div>
+        <label class="mtable-6-statement-point" for="mgm_q2_5">
+            <input name="mgm_q2" type="radio" value="5" id="mgm_q2_5" required />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q2_4">
+            <input name="mgm_q2" type="radio" value="4" id="mgm_q2_4" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q2_3">
+            <input name="mgm_q2" type="radio" value="3" id="mgm_q2_3" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q2_2">
+            <input name="mgm_q2" type="radio" value="2" id="mgm_q2_2" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q2_1">
+            <input name="mgm_q2" type="radio" value="1" id="mgm_q2_1" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q2_0">
+            <input name="mgm_q2" type="radio" value="0" id="mgm_q2_0" />
+        </label>
+    </div>
+` // ALREADY REVERSE CODED
+
+const mgm_q3 = `
+    <div class="mtable-6-statement-container">
+        <div class="mtable-6-statement-text">You can always substantially improve your morals and character.</div>
+        <label class="mtable-6-statement-point" for="mgm_q3_0">
+            <input name="mgm_q3" type="radio" value="0" id="mgm_q3_0" required />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q3_1">
+            <input name="mgm_q3" type="radio" value="1" id="mgm_q3_1" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q3_2">
+            <input name="mgm_q3" type="radio" value="2" id="mgm_q3_2" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q3_3">
+            <input name="mgm_q3" type="radio" value="3" id="mgm_q3_3" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q3_4">
+            <input name="mgm_q3" type="radio" value="4" id="mgm_q3_4" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q3_5">
+            <input name="mgm_q3" type="radio" value="5" id="mgm_q3_5" />
+        </label>
+    </div>
+`
+
+const mgm_q4 = `
+    <div class="mtable-6-statement-container">
+        <div class="mtable-6-statement-text">You can improve your basic morals and character considerably.</div>
+        <label class="mtable-6-statement-point" for="mgm_q4_0">
+            <input name="mgm_q4" type="radio" value="0" id="mgm_q4_0" required />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q4_1">
+            <input name="mgm_q4" type="radio" value="1" id="mgm_q4_1" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q4_2">
+            <input name="mgm_q4" type="radio" value="2" id="mgm_q4_2" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q4_3">
+            <input name="mgm_q4" type="radio" value="3" id="mgm_q4_3" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q4_4">
+            <input name="mgm_q4" type="radio" value="4" id="mgm_q4_4" />
+        </label>
+        <label class="mtable-6-statement-point" for="mgm_q4_5">
+            <input name="mgm_q4" type="radio" value="5" id="mgm_q4_5" />
+        </label>
+    </div>
+`
+
+var mgm_array = [mgm_q1, mgm_q2, mgm_q3, mgm_q4]
+
+shuffleArray(mgm_array)
+
+const mgm_html = `
+    <div class="prevent-select" style="text-align: left;">
+        Please read each sentence below and select the option that shows how much you agree with it. There are no right or wrong answers.
+        <br>
+        <br>
+        <div class="mtable-container">
+            <div class="mtable-scale-container">
+                <div class="mtable-6-scale-spacer"></div>
+                <div class="mtable-6-scale-point">1<br>strongly disagree</div>
+                <div class="mtable-6-scale-point">2<br>disagree</div>
+                <div class="mtable-6-scale-point">3<br>mostly disagree</div>
+                <div class="mtable-6-scale-point">4<br>mostly agree</div>
+                <div class="mtable-6-scale-point">5<br>agree</div>
+                <div class="mtable-6-scale-point">6<br>strongly agree</div>
+            </div>
+            ${mgm_array[0]}
+            ${mgm_array[1]}
+            ${mgm_array[2]}
+            ${mgm_array[3]}
+        </div>
+        <br>
+    </div>
+`
+
 const attention_question = `
     <div class="prevent-select" style="text-align: left;">
         Sometimes respondents to our surveys are bots rather than real people. 
@@ -144,11 +268,10 @@ const attention_question = `
     </div>
 `
 
-function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_tempt, outcome_notempt, dislike, like_text, dislike_text, conclusion_tempt, conclusion_notempt) {
-    let setups = (tempt_first) ? [setup_tempt, setup_notempt] : [setup_notempt, setup_tempt]
+function scenario_description(tempt_first, name_tempt, name_notempt, setup, outcome_tempt, outcome_notempt, conclusion) {
+    let setups = (tempt_first) ? [fillTemplate(setup, name_tempt), fillTemplate(setup, name_notempt)] : [fillTemplate(setup, name_notempt), fillTemplate(setup, name_tempt)]
     let outcomes = (tempt_first) ? [outcome_tempt, outcome_notempt] : [outcome_notempt, outcome_tempt]
-    let dislikes = (dislike == "d") ? ((tempt_first) ? [like_text, dislike_text] : [dislike_text, like_text]) : ["", ""]
-    let conclusions = (tempt_first) ? [conclusion_tempt, conclusion_notempt] : [conclusion_notempt, conclusion_tempt]
+    let conclusions = (tempt_first) ? [fillTemplate(conclusion, name_tempt), fillTemplate(conclusion, name_notempt)] : [fillTemplate(conclusion, name_notempt), fillTemplate(conclusion, name_tempt)]
 
     let scenario_text = `
         <div class="scenarios-container">
@@ -157,7 +280,6 @@ function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_t
                     ${setups[0]}
                     <br>
                     <br>
-                    ${dislikes[0]}
                     ${outcomes[0]}
                     <br>
                     <br>
@@ -171,7 +293,6 @@ function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_t
                     ${setups[1]}
                     <br>
                     <br>
-                    ${dislikes[1]}
                     ${outcomes[1]}
                     <br>
                     <br>
@@ -188,7 +309,7 @@ function scenario_description(tempt_first, setup_tempt, setup_notempt, outcome_t
     return scenario_text
 }
 
-function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, good_behav, bad_behav) {
+function scenario_questions(tempt_first, name_tempt, name_notempt, good_behav, bad_behav) {
     let names = (tempt_first) ? [name_tempt, name_notempt] : [name_notempt, name_tempt]
 
     let q_relmoral = `
@@ -256,77 +377,6 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
                     ${names[1]} was much more moral
                     <br>
                     <input name="relmoral" type="radio" value="${(tempt_first) ? 0 : 6}" id="relmoral_6" required />
-                </div>
-            </label>
-        </div>
-        <br>
-    `
-
-    let q_average = `
-        How likely is it that the average ${(agent_age == "c") ? "child" : "adult"} would be tempted to ${bad_behav} in this situation?
-        <br>
-        <div class="hlikert-container">
-            <label class="hlikert-label" for="average_0">
-                <div class="hlikert">
-                    1
-                    <br>
-                    not at all likely
-                    <br>
-                    <input name="average" type="radio" value="0" id="average_0" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_1">
-                <div class="hlikert">
-                    2
-                    <br>
-                    slightly likely
-                    <br>
-                    <input name="average" type="radio" value="1" id="average_1" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_2">
-                <div class="hlikert">
-                    3
-                    <br>
-                    somewhat likely
-                    <br>
-                    <input name="average" type="radio" value="2" id="average_2" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_3">
-                <div class="hlikert">
-                    4
-                    <br>
-                    moderately likely
-                    <br>
-                    <input name="average" type="radio" value="3" id="average_3" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_4">
-                <div class="hlikert">
-                    5
-                    <br>
-                    quite likely
-                    <br>
-                    <input name="average" type="radio" value="4" id="average_4" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_5">
-                <div class="hlikert">
-                    6
-                    <br>
-                    considerably likely
-                    <br>
-                    <input name="average" type="radio" value="5" id="average_5" required />
-                </div>
-            </label>
-            <label class="hlikert-label" for="average_6">
-                <div class="hlikert">
-                    7
-                    <br>
-                    very likely
-                    <br>
-                    <input name="average" type="radio" value="6" id="average_6" required />
                 </div>
             </label>
         </div>
@@ -409,6 +459,82 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
         <br>
     `
 
+    let q_char_tempt = `
+        <div class="mtable-statement-container">
+            <div class="mtable-statement-text">${name_tempt}</div>
+            <label class="mtable-statement-point" for="char_tempt_0">
+                <input name="char_tempt" type="radio" value="0" id="char_tempt_0" required />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_1">
+                <input name="char_tempt" type="radio" value="1" id="char_tempt_1" />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_2">
+                <input name="char_tempt" type="radio" value="2" id="char_tempt_2" />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_3">
+                <input name="char_tempt" type="radio" value="3" id="char_tempt_3" />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_4">
+                <input name="char_tempt" type="radio" value="4" id="char_tempt_4" />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_5">
+                <input name="char_tempt" type="radio" value="5" id="char_tempt_5" />
+            </label>
+            <label class="mtable-statement-point" for="char_tempt_6">
+                <input name="char_tempt" type="radio" value="6" id="char_tempt_6" />
+            </label>
+        </div>
+    `
+
+    let q_char_notempt = `
+        <div class="mtable-statement-container">
+            <div class="mtable-statement-text">${name_notempt}</div>
+            <label class="mtable-statement-point" for="char_notempt_0">
+                <input name="char_notempt" type="radio" value="0" id="char_notempt_0" required />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_1">
+                <input name="char_notempt" type="radio" value="1" id="char_notempt_1" />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_2">
+                <input name="char_notempt" type="radio" value="2" id="char_notempt_2" />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_3">
+                <input name="char_notempt" type="radio" value="3" id="char_notempt_3" />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_4">
+                <input name="char_notempt" type="radio" value="4" id="char_notempt_4" />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_5">
+                <input name="char_notempt" type="radio" value="5" id="char_notempt_5" />
+            </label>
+            <label class="mtable-statement-point" for="char_notempt_6">
+                <input name="char_notempt" type="radio" value="6" id="char_notempt_6" />
+            </label>
+        </div>
+    `
+
+    let char_array = (tempt_first) ? [q_char_tempt, q_char_notempt] : [q_char_notempt, q_char_tempt]
+
+    let q_char = `
+        How good or bad of a person do you think each individual is in general?
+        <br>
+        <div class="mtable-container">
+            <div class="mtable-scale-container">
+                <div class="mtable-scale-spacer"></div>
+                <div class="mtable-scale-point">1<br>very bad</div>
+                <div class="mtable-scale-point">2<br>bad</div>
+                <div class="mtable-scale-point">3<br>a little bad</div>
+                <div class="mtable-scale-point">4<br>neutral</div>
+                <div class="mtable-scale-point">5<br>a little good</div>
+                <div class="mtable-scale-point">6<br>good</div>
+                <div class="mtable-scale-point">7<br>very good</div>
+            </div>
+            ${char_array[0]}
+            ${char_array[1]}
+        </div>
+        <br>
+    `
+
     let a_tempt = `
         <label for="whotempt_tempt">
             <div class="vmulti">
@@ -449,7 +575,7 @@ function scenario_questions(tempt_first, agent_age, name_tempt, name_notempt, go
         <br>
     `
 
-    let questions_array = [q_relmoral, q_average, q_praise, q_whotempt]
+    let questions_array = [q_relmoral, q_praise, q_char, q_whotempt]
 
     let all_questions = `
         <div class="prevent-select" style="text-align: left;">
