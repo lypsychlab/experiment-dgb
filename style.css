@@ -10,11 +10,20 @@
     text-align: left;
 }
 
-.scenario {
+.scenarios {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.scenarios > div {
+    flex: 1 1 45%;
+}
+
+.scenario-paragraph {
+    margin-bottom: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .prevent-select {

@@ -14,7 +14,12 @@ const url_pid = jsPsych.data.getURLVariable("PROLIFIC_PID")
 
 const mgm_first = Math.random() < 0.5
 
-jsPsych.data.addProperties({subject_id: subject_id, prolific_id: url_pid, scenario_order: scenario_order, mgm_first: mgm_first});
+jsPsych.data.addProperties({
+    subject_id: subject_id, 
+    prolific_id: url_pid, 
+    scenario_order: scenario_order, 
+    mgm_first: mgm_first
+})
 
 var scenario_counter = 0
 
@@ -30,7 +35,7 @@ const consent = {
     stimulus: consent_html,
     choices: ["Consent NOT given", "Consent given"],
     button_html: [
-        `<button class="jspsych-btn" onclick="window.open('', '_blank')">%choice%</button>`,
+        `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=C18LAPRX', '_blank')">%choice%</button>`,
         `<button class="jspsych-btn">%choice%</button>`
     ],
     on_finish: function(data) {
@@ -39,7 +44,7 @@ const consent = {
             document.getElementById("jspsych-content").style.margin = "auto"
 
             jsPsych.endExperiment(
-                "You chose not to consent to participate.<br>If you were not automatically directed back to Prolific, please go back and enter the completion code "
+                "You chose not to consent to participate.<br>If you were not automatically directed back to Prolific, please go back and enter the completion code C18LAPRX"
             )
         }
     },
@@ -116,7 +121,7 @@ const attention = {
     on_load: function() {
         scenario_counter += 1
 
-        if (scenario_counter != 4) {
+        if (scenario_counter != 8) {
             jsPsych.finishTrial()
         }
     },
@@ -155,7 +160,8 @@ const scenario = {
     },
     data: {
         type_of_trial: "scenario",
-        scenario: jsPsych.timelineVariable("scenario")
+        scenario: jsPsych.timelineVariable("scenario"),
+        moral: jsPsych.timelineVariable("moral")
     },
     on_finish: function(data) {
         data.relmoral = data.response.relmoral
@@ -217,12 +223,12 @@ const debrief_to_prolific = {
     type: jsPsychHtmlButtonResponse,
     stimulus: debrief_html,
     choices: ["Back to Prolific"],
-    button_html: `<button class="jspsych-btn" onclick="window.open('', '_blank')">%choice%</button>`,
+    button_html: `<button class="jspsych-btn" onclick="window.open('https://app.prolific.com/submissions/complete?cc=CZ3OYB7F', '_blank')">%choice%</button>`,
     on_finish: function() {
         document.getElementById("jspsych-content").style.margin = "auto"
 
         jsPsych.endExperiment(
-            "Thank you for your participation!.<br>Your completion code is "
+            "Thank you for your participation!.<br>Your completion code is CZ3OYB7F"
         )
     },
     data: {
@@ -234,7 +240,7 @@ const debrief_to_prolific = {
 const save_data_all_trials = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "",
+    experiment_id: "Keh7Op7zyr5B",
     filename: `${subject_id}_all_trials.csv`,
     data_string: () => jsPsych.data.get().csv(),
     data: {
@@ -245,7 +251,7 @@ const save_data_all_trials = {
 const save_data_final = {
     type: jsPsychPipe,
     action: "save",
-    experiment_id: "",
+    experiment_id: "Keh7Op7zyr5B",
     filename: `${subject_id}_final.csv`,
     data_string: () => jsPsych.data.get().csv(),
     data: {
@@ -258,15 +264,15 @@ const save_data_final = {
 var experiment = []
 
 experiment.push(
-    // consent,
-    // prolific_id,
-    // instructions,
-    mgm,
-    scenario_timeline,
-    // save_data_all_trials,
-    // demographics,
-    // save_data_final,
-    // debrief_to_prolific
+    consent,
+    prolific_id,
+    instructions,
+    mgm_first ? mgm : scenario_timeline,
+    mgm_first ? scenario_timeline : mgm,
+    save_data_all_trials,
+    demographics,
+    save_data_final,
+    debrief_to_prolific
 )
 
 jsPsych.run(experiment)

@@ -7,10 +7,10 @@ const consent_html = `
     <p style="text-align: left;">
         The purpose of this study is to understand how we weigh information what other people say. 
         This study will be conducted through this online survey. 
-        The survey should take you about <span style="font-weight: bold;">7 minutes</span> to complete. 
+        The survey should take you about <span style="font-weight: bold;">TIME</span> to complete. 
         There are no direct benefits to you, 
         but you may feel gratified knowing that you helped further the scholarly work in this research area, 
-        and you will be compensated <span style="font-weight: bold;">$1.40</span> for your participation. 
+        and you will be compensated <span style="font-weight: bold;">MONEY</span> for your participation. 
         There are no costs to you associated with your participation.
     </p>
     <p style="text-align: left;">
@@ -56,8 +56,8 @@ const instructions_page1 = `
         However, the two characters will think through their respective scenarios differently, so please read the second and third paragraphs of each scenario carefully.
         <br>
         <br>
-        There are 8 scenarios. The first scenario will be presented when you click the "Next" button below. 
-        Then, the scenarios will follow one another until you have seen all 8. After the scenarios, there will be a short demographics survey.
+        There are 16 scenarios. The first scenario will be presented when you click the "Next" button below. 
+        Then, the scenarios will follow one another until you have seen all 16. After the scenarios, there will be a short demographics survey.
     </p>
 `
 
@@ -275,34 +275,27 @@ function scenario_description(tempt_first, name_tempt, name_notempt, setup, outc
 
     let scenario_text = `
         <div class="scenarios-container">
-            <div class="scenario">
-                <div>
+            <div class="scenarios">
+                <div class="scenario-paragraph">
                     ${setups[0]}
-                    <br>
-                    <br>
-                    ${outcomes[0]}
-                    <br>
-                    <br>
                 </div>
-                <div>
+                <div class="scenario-paragraph">
+                    ${setups[1]}
+                </div>
+                <div class="scenario-paragraph">
+                    ${outcomes[0]}
+                </div>
+                <div class="scenario-paragraph">
+                    ${outcomes[1]}
+                </div>
+                <div class="scenario-paragraph">
                     ${conclusions[0]}
                 </div>
-            </div>
-            <div class="scenario">
-                <div>
-                    ${setups[1]}
-                    <br>
-                    <br>
-                    ${outcomes[1]}
-                    <br>
-                    <br>
-                </div>
-                <div>
+                <div class="scenario-paragraph">
                     ${conclusions[1]}
                 </div>
             </div>
         </div>
-        <br>
         <hr>
     `
 
