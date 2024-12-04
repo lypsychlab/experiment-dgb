@@ -23,7 +23,7 @@ jsPsych.data.addProperties({
 
 var scenario_counter = 0
 
-var question_order = [0, 1, 2, 3]
+var question_order = [0, 1, 2]
 
 shuffleArray(question_order)
 

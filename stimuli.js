@@ -5,12 +5,12 @@ const consent_html = `
         This study is sponsored by Boston College and the John Templeton Foundation.
     </p>
     <p style="text-align: left;">
-        The purpose of this study is to understand how we weigh information what other people say. 
+        The purpose of this study is to understand how we weigh information in moral decisions. 
         This study will be conducted through this online survey. 
-        The survey should take you about <span style="font-weight: bold;">TIME</span> to complete. 
+        The survey should take you about <span style="font-weight: bold;">12 minutes</span> to complete. 
         There are no direct benefits to you, 
         but you may feel gratified knowing that you helped further the scholarly work in this research area, 
-        and you will be compensated <span style="font-weight: bold;">MONEY</span> for your participation. 
+        and you will be compensated <span style="font-weight: bold;">$2.40</span> for your participation. 
         There are no costs to you associated with your participation.
     </p>
     <p style="text-align: left;">
@@ -56,8 +56,8 @@ const instructions_page1 = `
         However, the two characters will think through their respective scenarios differently, so please read the second and third paragraphs of each scenario carefully.
         <br>
         <br>
-        There are 16 scenarios. The first scenario will be presented when you click the "Next" button below. 
-        Then, the scenarios will follow one another until you have seen all 16. After the scenarios, there will be a short demographics survey.
+        There will be 16 scenarios. There will also be a very short survey about your thoughts on morality. 
+        After these, there will be a short demographics survey. Click the "Next" button to begin.
     </p>
 `
 
@@ -87,7 +87,7 @@ const mgm_q1 = `
 
 const mgm_q2 = `
     <div class="mtable-6-statement-container">
-        <div class="mtable-6-statement-text">To be honest, you can't really improve you morals and character.</div>
+        <div class="mtable-6-statement-text">To be honest, you can't really improve your morals and character.</div>
         <label class="mtable-6-statement-point" for="mgm_q2_5">
             <input name="mgm_q2" type="radio" value="5" id="mgm_q2_5" required />
         </label>
@@ -568,15 +568,15 @@ function scenario_questions(tempt_first, name_tempt, name_notempt, good_behav, b
         <br>
     `
 
-    let questions_array = [q_relmoral, q_praise, q_char, q_whotempt]
+    let questions_array = [q_relmoral, q_praise, q_char]
 
     let all_questions = `
         <div class="prevent-select" style="text-align: left;">
             <br>
+            ${q_whotempt}
             ${questions_array[question_order[0]]}
             ${questions_array[question_order[1]]}
             ${questions_array[question_order[2]]}
-            ${questions_array[question_order[3]]}
         </div>
     `
 
@@ -921,12 +921,7 @@ const debrief_html = `
     please contact the Boston College Office for Research Protections at irb@bc.edu or 617-552-4778.
     <br>
     <br>
-    <strong>Completion Code:</strong>
-    <br>
-    Thank you for participating in this study. Your response has been recorded.
-    <br>
-    <br>
-    If the button below does not automatically enter your completion code, please copy and paste this code into Prolific: CUVG196A
+    <strong>Thank you for participating in this study!</strong>
     <br>
     <br>
 </div>
